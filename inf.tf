@@ -14,5 +14,5 @@ resource "azurerm_subnet" "couch_sub"{
     name = "couch-subnet"
     resource_group_name = azurerm_resource_group.vnet_rg.name
     virtual_network_name = azurerm_virtual_network.couch_net.name
-    address_space = "11.0.2.0/24"
+    address_prefixes = ["11.0.2.0/24"]
 }
