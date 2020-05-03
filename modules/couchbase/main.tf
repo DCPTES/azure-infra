@@ -5,7 +5,7 @@ data "azurerm_subnet" "search_subnet" {
 } 
 
 resource "azurerm_resource_group" "couch_clu"{
-    name = "couch_vm_rg"   
+    name = "couch_vm_rg1"   
     location = var.locname                                                                  
 }
 
