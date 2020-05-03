@@ -65,7 +65,7 @@ resource "azurerm_linux_virtual_machine" "couch_vm"{
     user     =  var.username
     password =  var.admin_pass
    }
-    source      = "${file("${path.module}/pre-provision.sh")}"
+    source      = "${path.module}/pre-provision.sh"
     destination = "/tmp/pre-provision.sh"
   } 
 
