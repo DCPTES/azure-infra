@@ -16,6 +16,11 @@ resource "azurerm_public_ip" "couch_public_ip" {
   allocation_method   = "Static"
 }
 
+data "azurerm_public_ip" "public_ip" {
+  name                = azurerm_public_ip.couch_public_ip.name
+  resource_group_name = azurerm_resource_group.couch_clu.name
+}
+
 resource "azurerm_network_interface" "couch_nic"{
     name = "${var.cb_name}-nic"                                     
     location = var.locname                                          
@@ -62,7 +67,8 @@ resource "azurerm_linux_virtual_machine" "couch_vm"{
   provisioner "remote-exec" {
     connection {
       type = "ssh"
-      host = azurerm_public_ip.couch_public_ip.ip_address
+//      host = data.azurerm_public_ip.public_ip.ip_address
+      host = self.public_ip
       user     =  var.username                                       
       password =  var.admin_pass                                   
     }
