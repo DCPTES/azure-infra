@@ -58,6 +58,15 @@ resource "azurerm_linux_virtual_machine" "couch_vm"{
       sku       = "7.5"
       version   = "latest"
     }
+  }
+
+resource "null_resource" "couch"{
+  
+  connection {
+    host = data.azurerm_public_ip.public_ip.ip_address
+    user     =  var.username
+    password =  var.admin_pass
+   }
   
   provisioner "file" {
     source      = "pre-provision.sh"
