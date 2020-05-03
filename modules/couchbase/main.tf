@@ -74,14 +74,14 @@ resource "null_resource" "couch"{
   } 
 
   provisioner "remote-exec" {
-    connection {
+/*    connection {
       type = "ssh"
       host = data.azurerm_public_ip.public_ip.ip_address
-//      host = self.public_ip
+      host = self.public_ip
       user     =  var.username                                       
       password =  var.admin_pass                                   
     }
-//    script = "${path.module}/pre-provision.sh}"  
+    script = "${path.module}/pre-provision.sh}"  */
     
     inline = [
       "chmod +x /tmp/pre-provision.sh",
