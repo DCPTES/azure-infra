@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 echo '******************* update the vm ******************* '
 sudo yum update -q -y
