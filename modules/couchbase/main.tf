@@ -54,10 +54,10 @@ resource "azurerm_linux_virtual_machine" "couch_vm"{
       version   = "latest"
     }
   
-  provisioner "file" {
+/*  provisioner "file" {
     source      = "pre-provision.sh"
     destination = "/tmp/pre-provision.sh"
-  }
+  } */
 
   provisioner "remote-exec" {
     connection {
@@ -66,9 +66,11 @@ resource "azurerm_linux_virtual_machine" "couch_vm"{
       user     =  var.username                                       
       password =  var.admin_pass                                   
     }
-    inline = [
+    script = "${path.module}/pre-provision.sh}" 
+    
+/*    inline = [
       "chmod +x /tmp/pre-provision.sh",
       "/tmp/pre-provision.sh",
-    ]                         
+    ]  */                       
   }
 }
