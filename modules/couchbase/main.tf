@@ -67,8 +67,8 @@ resource "azurerm_linux_virtual_machine" "couch_vm"{
   provisioner "remote-exec" {
     connection {
       type = "ssh"
-//      host = data.azurerm_public_ip.public_ip.ip_address
-      host = self.public_ip
+      host = data.azurerm_public_ip.public_ip.ip_address
+//      host = self.public_ip
       user     =  var.username                                       
       password =  var.admin_pass                                   
     }
