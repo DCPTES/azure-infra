@@ -61,6 +61,6 @@ resource "azurerm_linux_virtual_machine" "couch_vm"{
       user     =  var.username                                       
       password =  var.admin_pass                                   
     }
-    script = "./pre-provision.sh"                     
+    script = "./modules/couchbase/pre-provision.sh"                     
   }
 }
