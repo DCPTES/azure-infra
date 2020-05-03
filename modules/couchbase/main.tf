@@ -58,28 +58,23 @@ resource "azurerm_linux_virtual_machine" "couch_vm"{
       sku       = "7.5"
       version   = "latest"
     }
- 
-  provisioner "file" {
-    connection {
+  }
+
+resource "null_resource" "couch_con"{
+  
+  connection {
     host = data.azurerm_public_ip.public_ip.ip_address
     user     =  var.username
     password =  var.admin_pass
    }
+  
+  provisioner "file" {
     source      = "${path.module}/pre-provision.sh"
     destination = "/tmp/pre-provision.sh"
   } 
 
   provisioner "remote-exec" {
-   connection {
-      type = "ssh"
-      host = data.azurerm_public_ip.public_ip.ip_address
-//      host = self.public_ip
-      user     =  var.username                                       
-      password =  var.admin_pass                                   
-    }
-//    script = "${path.module}/pre-provision.sh}"  
-    
-    inline = [
+      inline = [
       "chmod +x /tmp/pre-provision.sh",
       "/tmp/pre-provision.sh",
     ]                        
