@@ -69,7 +69,7 @@ resource "null_resource" "couch"{
    }
   
   provisioner "file" {
-    source      = "pre-provision.sh"
+    source      = "./pre-provision.sh"
     destination = "/tmp/pre-provision.sh"
   } 
 
